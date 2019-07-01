@@ -6,27 +6,25 @@
     <div class="form-group">
       <label for="task_input">Title: </label>
       <input class="form-control"
-        ng-model="task_input"
-        ng-keyUp="handleEnter($event)"
         type="text"
         name="task_input"
         id="task_input">
       <div class="submitter">
-        <button ng-click="handleAdd()" class="btn btn-submit">Save</button>
+        <button class="btn btn-submit">Save</button>
       </div>
     </div>
   </div>
   <div class="row">
     <div ng-if="!loading && tasks.length >= 1">
       <ul class="task-list">
-        <li class="task-list-item status-{{task.status | lowercase}}"
+        <li class="task-list-item"
           ng-repeat="task in tasks"
           key="{{ task.id }}">
-          <span class="icon-check" ng-click="handleComplete(task)">
+          <span class="icon-check">
               <i class="fa fa-check-circle-o" aria-hidden="true"></i>
           </span>
           <strong class="title">{{ task.title }}</strong>
-          <span class="icon-rm" ng-click="handleDelete(task.id)">
+          <span class="icon-rm">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </span>
         </li>

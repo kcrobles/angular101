@@ -9,7 +9,7 @@ router.use(function timeLog(req, res, next) {
 
 router.get('/', function(req, res, next) {
   const data = taskService.getTasks();
-  console.log('getting all tasks');
+  console.log('Getting all tasks');
   if (data) {
     res.json({
       "status": "OK",
@@ -25,6 +25,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   const { id = '' } = req.params;
+  console.log('Retrieving task: ' + id);
   const task = taskService.fetchTask(id);
   if (task) {
     res.json({
@@ -41,7 +42,6 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log('request: ', req.body);
   const { task } = req.body;
   const before = taskService.getTasks().tasks.length;
   taskService.addTask(task);
@@ -62,6 +62,7 @@ router.post('/', function(req, res, next) {
 
 router.put('/:id', function(req, res, next) {
   const { id = '' } = req.params;
+  console.log('Updating tasks: ' + id);
   const { task } = req.body;
   const updated = taskService.updateTask(id, task);
   if (updated) {
@@ -81,6 +82,7 @@ router.put('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
   const { id = '' } = req.params;
+  console.log('Deleting tasks: ' + id);
   const deleted = taskService.deleteTask(id);
   if (deleted) {
     const data = taskService.getTasks();
